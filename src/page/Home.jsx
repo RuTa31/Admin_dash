@@ -20,8 +20,15 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import Logo from '../image/Logo.png'
 import { height } from '@mui/system';
+import {BrowserRouter as Router, Link, Route, Routes} from 'react-router-dom';
+import Buy from './Buy';
+import Chart from './Chart';
+import Settings from './Settings';
+import Menu from './Menu';
 
 const drawerWidth = 240;
+const side_bar_list = ['Захиалга', 'График', 'Тохиргоо', 'Меню'];
+const side_ID = ['/', 'chart', 'settings', 'menu'];
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -128,8 +135,7 @@ const Home = () => {
         backgroundColor: "#000723"
       },}}
       >
-        <DrawerHeader>
-            {/* <img src={Logo}></img> */}
+        <DrawerHeader sx={{margin: 3}}>
           <IconButton onClick={handleDrawerClose}>
           <img src={Logo}></img>
             {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
@@ -137,27 +143,29 @@ const Home = () => {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Захиалга', 'График', 'Тохиргоо', 'Меню'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                  {index % 2 === 0 ? <InboxIcon sx={{color: 'white'}} /> : <MailIcon sx={{color: 'white'}} />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
+          {side_bar_list.map((text, index) => (
+            <Link key={text} to={side_ID[index]}>
+                <ListItem disablePadding sx={{ display: 'block' }}>
+                    <ListItemButton
+                        sx={{
+                        minHeight: 48,
+                        justifyContent: open ? 'initial' : 'center',
+                        px: 2.5,
+                        }}
+                    >
+                        <ListItemIcon
+                        sx={{
+                            minWidth: 0,
+                            mr: open ? 3 : 'auto',
+                            justifyContent: 'center',
+                        }}
+                        >
+                        {index % 2 === 0 ? <InboxIcon sx={{color: 'white'}} /> : <MailIcon sx={{color: 'white'}} />}
+                        </ListItemIcon>
+                        <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                    </ListItemButton>
+                </ListItem>
+            </Link>
           ))}
         </List>
         <Divider />
@@ -171,7 +179,7 @@ const Home = () => {
                   px: 2.5,
                 }}
               >
-                <ListItemIcon
+                <ListItemIcon   
                   sx={{
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
@@ -186,36 +194,14 @@ const Home = () => {
           ))}
         </List>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3, backgroundColor: "gray" }}>
-        <DrawerHeader />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
-          enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
-          imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus.
-          Convallis convallis tellus id interdum velit laoreet id donec ultrices.
-          Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra
-          nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum
-          leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis
-          feugiat vivamus at augue. At augue eget arcu dictum varius duis at
-          consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
-          sapien faucibus et molestie ac.
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper
-          eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim
-          neque volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra
-          tellus. Purus sit amet volutpat consequat mauris. Elementum eu facilisis
-          sed odio morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi
-          tincidunt ornare massa eget egestas purus viverra accumsan in. In hendrerit
-          gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
-          et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis
-          tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-          eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-          posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
-      </Box>
+        <Box sx={{marginTop: 10}}>
+          <Routes>
+            <Route path="/" element={<Buy />}/>
+            <Route path="/Chart" element={<Chart />}/>
+            <Route path="/settings" element={<Settings />}/>
+            <Route path='/Menu' element={<Menu />}/>
+        </Routes>
+        </Box>           
     </Box>
   );
 }

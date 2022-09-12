@@ -1,7 +1,7 @@
 const Chart = () => {
     return(
         <>
-            sfsfs
+            chart
         </>
     )
 }
