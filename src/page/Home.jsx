@@ -18,13 +18,13 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import Logo from '../image/Logo.png'
-import { height } from '@mui/system';
+import Logo from '../image/Logo.png';
 import {BrowserRouter as Router, Link, Route, Routes} from 'react-router-dom';
 import Buy from './Buy';
 import Chart from './Chart';
 import Settings from './Settings';
 import Menu from './Menu';
+import { Container } from '@mui/system';
 
 const drawerWidth = 240;
 const side_bar_list = ['Захиалга', 'График', 'Тохиргоо', 'Меню'];
@@ -144,13 +144,15 @@ const Home = () => {
         <Divider />
         <List>
           {side_bar_list.map((text, index) => (
-            <Link key={text} to={side_ID[index]}>
+            <Link style={{textDecoration:'none',color:'white'}} key={text} to={side_ID[index]}>
                 <ListItem disablePadding sx={{ display: 'block' }}>
                     <ListItemButton
                         sx={{
                         minHeight: 48,
                         justifyContent: open ? 'initial' : 'center',
-                        px: 2.5,
+                        px: 2.5, "&:hover": {
+                          background: 'linear-gradient(90deg, #66B60F -1.37%, rgba(102, 182, 15, 0) 100%);'
+                        }
                         }}
                     >
                         <ListItemIcon
@@ -193,15 +195,16 @@ const Home = () => {
             </ListItem>
           ))}
         </List>
-      </Drawer>
-        <Box sx={{marginTop: 10}}>
-          <Routes>
-            <Route path="/" element={<Buy />}/>
-            <Route path="/Chart" element={<Chart />}/>
-            <Route path="/settings" element={<Settings />}/>
-            <Route path='/Menu' element={<Menu />}/>
-        </Routes>
-        </Box>           
+      </Drawer >
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <DrawerHeader />
+        <Routes>
+              <Route path="/" element={<Buy />}/>
+              <Route path="/Chart" element={<Chart />}/>
+              <Route path="/settings" element={<Settings />}/>
+              <Route path='/Menu' element={<Menu />}/>
+          </Routes>
+      </Box>
     </Box>
   );
 }
