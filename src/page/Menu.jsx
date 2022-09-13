@@ -1,9 +1,10 @@
 import { Box } from "@mui/system";
+import Card from "../components/card";
 
 const Menu = () => {
     return(
-        <Box>
-dfgsdfsf
+        <Box sx={{ height: 700, backgroundColor: 'grey' }}>
+            <Card />
         </Box>
     )
 }
