@@ -37,8 +37,8 @@ const ActionAreaCard = () => (
                                 <Typography gutterBottom variant="h8" component="div" sx={{display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                     {data ? `${data.vne}₮` : 'үнэ олдсонгүй'}
                                 </Typography>
-                                <Fab size="small" color="secondary" aria-label="add">
-                                    <AddIcon />
+                                <Fab size="small" color="secondary" aria-label="add" sx={{backgroundColor: 'rgb(0, 900, 0, 0.3)'}}>
+                                    <AddIcon sx={{color: 'rgb(0, 100, 0, 0.7)'}}/>
                                 </Fab>
                             </Box>
                         </Box>
