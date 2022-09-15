@@ -19,16 +19,16 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import Logo from '../image/Logo.png';
-import {BrowserRouter as Router, Link, Route, Routes} from 'react-router-dom';
+import { Link, Route, Routes} from 'react-router-dom';
 import Buy from './Buy';
 import Chart from './Chart';
 import Settings from './Settings';
 import Menu from './Menu';
-import { Container } from '@mui/system';
+import SignUp from './login/SignUp';
 
 const drawerWidth = 240;
-const side_bar_list = ['Захиалга', 'График', 'Тохиргоо', 'Меню'];
-const side_ID = ['/', 'chart', 'settings', 'menu'];
+const side_bar_list = ['sign_up', 'Захиалга', 'График', 'Тохиргоо', 'Меню'];
+const side_ID = ['/', 'Buy', 'chart', 'settings', 'menu'];
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -137,7 +137,7 @@ const Home = () => {
       >
         <DrawerHeader sx={{margin: 3}}>
           <IconButton onClick={handleDrawerClose}>
-          <img src={Logo}></img>
+            <img src={Logo}></img>
             {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </DrawerHeader>
@@ -199,7 +199,8 @@ const Home = () => {
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         <Routes>
-              <Route path="/" element={<Buy />}/>
+              {/* <Route path="/" element={<SignUp />}/> */}
+              <Route path="Buy" element={<Buy />}/>
               <Route path="/Chart" element={<Chart />}/>
               <Route path="/settings" element={<Settings />}/>
               <Route path='/Menu' element={<Menu />}/>
