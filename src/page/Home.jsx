@@ -153,7 +153,7 @@ const Home = () => {
       >
         <DrawerHeader sx={{ margin: 3 }}>
           <IconButton onClick={handleDrawerClose}>
-            <img src={Logo}></img>
+            {/* <img src={Logo}></img> */}
             {theme.direction === "rtl" ? (
               <ChevronLeftIcon />
             ) : (
